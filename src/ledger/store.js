@@ -71,14 +71,23 @@ export class LedgerStore {
     }
 
     const payload = toDatabase(record, user.id);
-    const { data, error } = await this.supabase
+    let response = await this.supabase
       .from("meal_logs")
       .insert(payload)
       .select("*")
       .eq("user_id", user.id)
       .single();
-    if (error) throw error;
-    return fromDatabase(data);
+    if (response.error && /feedback/i.test(response.error.message || "")) {
+      const { feedback, ...legacyPayload } = payload;
+      response = await this.supabase
+        .from("meal_logs")
+        .insert(legacyPayload)
+        .select("*")
+        .eq("user_id", user.id)
+        .single();
+    }
+    if (response.error) throw response.error;
+    return fromDatabase(response.data);
   }
 
   async removeAll() {
@@ -106,8 +115,13 @@ export function toDatabase(entry, userId) {
     additions: entry.additions || [],
     rating: Number(entry.rating),
     comment: entry.comment || "",
+    feedback: {
+      fullness: entry.fullness || "",
+      wouldRepeat: entry.wouldRepeat ?? null,
+      nextTime: entry.nextTime || ""
+    },
     eaten_at: entry.eatenAt || nowIso(),
-    source_version: "catalogue-schema-1"
+    source_version: "catalogue-schema-1-engine-1.1"
   };
 }
 
@@ -122,6 +136,9 @@ export function fromDatabase(row) {
     additions: row.additions || [],
     rating: Number(row.rating),
     comment: row.comment || "",
+    fullness: row.feedback?.fullness || "",
+    wouldRepeat: row.feedback?.wouldRepeat ?? null,
+    nextTime: row.feedback?.nextTime || "",
     eatenAt: row.eaten_at,
     createdAt: row.created_at,
     source: "cloud"

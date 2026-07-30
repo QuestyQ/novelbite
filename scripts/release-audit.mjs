@@ -33,10 +33,12 @@ for (const file of walk(".")) {
 for (const required of [
   "README.md", "LICENSE", "SECURITY.md", "FIRST_RELEASE.md", ".github/workflows/ci.yml",
   "public/manifest.webmanifest", "public/icons/icon-192.png", "public/icons/icon-512.png",
-  "public/icons/apple-touch-icon.png"
+  "public/icons/apple-touch-icon.png", "wrangler.jsonc"
 ]) {
   if (!fs.existsSync(required)) failures.push(`Missing ${required}`);
 }
+
+if (fs.existsSync("public/_redirects")) failures.push("Remove public/_redirects when Wrangler SPA fallback is enabled.");
 
 if (failures.length) {
   console.error(failures.join("\n"));

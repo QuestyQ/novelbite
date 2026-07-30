@@ -1,4 +1,4 @@
-const APP_VERSION = "1.0.0";
+const APP_VERSION = "1.1.0";
 const CACHE_NAME = `novelbite-shell-v${APP_VERSION}`;
 const APP_SHELL = [
   "/",
@@ -8,6 +8,8 @@ const APP_SHELL = [
   "/icons/novelbite-mark.svg",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
+  "/src/styles.css",
+  "/src/app/main.js",
   "/data/catalog-meta.json"
 ];
 
@@ -31,7 +33,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (url.pathname.startsWith("/data/")) {
+  if (url.pathname.startsWith("/data/") || url.pathname.startsWith("/vendor/")) {
     event.respondWith(
       caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
         const copy = response.clone();

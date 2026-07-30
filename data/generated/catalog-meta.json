@@ -1,7 +1,7 @@
 {
-  "appVersion": "1.0.0",
+  "appVersion": "1.1.0",
   "schemaVersion": 1,
-  "recommendationEngineVersion": "1.0.0",
+  "recommendationEngineVersion": "1.1.0",
   "count": 296,
   "sourceWorkbook": "data/sample/novelbite-demo.xlsx",
   "sourceWorkbookSha256": "dd22e4fc3b853efa632e96e2140642f97876325b5a014cbad91d910fdab10556",

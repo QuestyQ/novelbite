@@ -30,3 +30,13 @@ test("navigation and Escape can close every open dialog", async () => {
   assert.match(main, /event\.key === "Escape"/);
   assert.match(main, /function showPage[\s\S]*closeOpenDialogs\(\)/);
 });
+
+test("product functionality appears before case-study copy", () => {
+  const discover = html.indexOf('id="discoverPage"');
+  const queue = html.indexOf('id="priorityQueue"');
+  const caseStudy = html.indexOf('About this MSc portfolio project');
+  assert.ok(discover >= 0 && queue > discover);
+  assert.ok(caseStudy > queue);
+  assert.match(html, /id="searchPage"/);
+  assert.match(html, /id="roulettePage"/);
+});

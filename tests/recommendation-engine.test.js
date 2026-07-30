@@ -117,3 +117,36 @@ test("a five-item queue limits any one repetition family to two entries when alt
   }
   assert.ok([...counts.values()].every((count) => count <= 2));
 });
+
+test("relative nutrition and satiety metrics distinguish ingredient composition", async () => {
+  const { deriveMealMetrics } = await import("../src/recommendations/engine.js");
+  const balanced = meal("balanced", [addition("Citrus chickpeas"), addition("Crisp kale"), addition("Toasted seeds")], { heaviness: 5.5 });
+  const sparse = meal("sparse", [addition("Crisp onions", { natural: false })], { heaviness: 3 });
+  const balancedMetrics = deriveMealMetrics(balanced);
+  const sparseMetrics = deriveMealMetrics(sparse);
+  assert.ok(balancedMetrics.nutrition > sparseMetrics.nutrition);
+  assert.ok(balancedMetrics.satiety > sparseMetrics.satiety);
+});
+
+test("nutrition priority can change ordering without changing catalogue data", () => {
+  const nutrientDense = meal("dense", [addition("Citrus chickpeas"), addition("Crisp kale"), addition("Toasted seeds")], { baseScore: 7.4 });
+  const indulgent = meal("indulgent", [addition("Smoked cheese", { natural: false })], { baseScore: 8.1 });
+  const ranked = rankMeals([indulgent, nutrientDense], { ...context, priority: "nutrition" }, []);
+  assert.equal(ranked[0].meal.id, "dense");
+});
+
+test("daily flatbread guard removes only flatbreads after one is logged today", () => {
+  const flatbread = meal("flat", [addition("Mushroom")], { category: "Flatbread", name: "Flatbread", repetitionFamily: "flatbread" });
+  const bowl = meal("bowl", [addition("Chickpea")], { category: "Bowl", name: "Bowl", repetitionFamily: "bowl" });
+  const history = [{ ...flatbread, rating: 4, eatenAt: "2026-07-30T12:00:00Z" }];
+  const ranked = rankMeals([flatbread, bowl], { ...context, avoidSecondFlatbread: true }, history, { now: new Date("2026-07-30T18:00:00Z") });
+  assert.deepEqual(ranked.map((item) => item.meal.id), ["bowl"]);
+});
+
+test("weighted roulette returns an eligible ranked candidate", async () => {
+  const { weightedRoulettePick } = await import("../src/recommendations/engine.js");
+  const meals = [meal("a", [addition("A")]), meal("b", [addition("B")]), meal("c", [addition("C")])];
+  const picked = weightedRoulettePick(meals, context, [], { random: () => 0.5 });
+  assert.ok(picked);
+  assert.ok(meals.some((candidate) => candidate.id === picked.meal.id));
+});

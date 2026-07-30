@@ -1,8 +1,8 @@
 {
   "name": "novelbite",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
-  "description": "A privacy-first, context-aware meal recommendation PWA and reproducible data pipeline.",
+  "description": "A product-first, privacy-aware meal recommendation PWA and reproducible data pipeline.",
   "type": "module",
   "scripts": {
     "config:write": "node scripts/write-public-config.mjs",

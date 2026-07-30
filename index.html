@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="NovelBite is a privacy-first, context-aware meal recommendation portfolio project." />
+    <meta name="description" content="NovelBite is a context-aware meal recommendation PWA built as an MSc portfolio project." />
     <meta name="theme-color" content="#12324a" />
     <link rel="icon" href="/icons/novelbite-mark.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
@@ -16,8 +16,8 @@
 
     <header class="site-header">
       <a class="brand" href="#discover" aria-label="NovelBite home">
-        <img src="/icons/novelbite-mark.svg" alt="" width="44" height="44" />
-        <span><strong>NovelBite</strong><small>make the next meal count</small></span>
+        <img src="/icons/novelbite-mark.svg" alt="" width="42" height="42" />
+        <span><strong>NovelBite</strong><small>recommendations before explanations</small></span>
       </a>
       <div class="header-meta">
         <span id="modeBadge" class="status-pill">Choose a mode</span>
@@ -27,134 +27,200 @@
 
     <nav class="tab-bar" aria-label="Primary">
       <button class="tab is-active" data-tab="discover" type="button"><span aria-hidden="true">⌂</span><span>Discover</span></button>
-      <button class="tab" data-tab="schedule" type="button"><span aria-hidden="true">◷</span><span>Schedule</span></button>
+      <button class="tab" data-tab="search" type="button"><span aria-hidden="true">⌕</span><span>Search</span></button>
+      <button class="tab" data-tab="roulette" type="button"><span aria-hidden="true">◉</span><span>Roulette</span></button>
       <button class="tab" data-tab="ledger" type="button"><span aria-hidden="true">▤</span><span>Ledger</span></button>
-      <button class="tab" data-tab="privacy" type="button"><span aria-hidden="true">•••</span><span>More</span></button>
+      <button class="tab" data-tab="more" type="button"><span aria-hidden="true">•••</span><span>More</span></button>
     </nav>
 
     <main id="main">
       <section id="discoverPage" class="page">
-        <section class="hero" aria-labelledby="heroTitle">
-          <div class="hero-copy">
-            <p class="eyebrow">Portfolio case study · v1.0.0</p>
-            <h1 id="heroTitle">Novel meals without repeating yesterday.</h1>
-            <p class="hero-intro">A deterministic recommendation PWA that balances novelty, ingredient exposure, shift context and personal feedback across a fictional 296-combination menu.</p>
-            <div class="hero-actions">
-              <button id="tryDemoButton" class="button button-primary" type="button">Try guest demo</button>
-              <button id="localModeButton" class="button button-secondary" type="button">Use local mode</button>
-              <button id="heroSignInButton" class="button button-quiet" type="button">Optional cloud sync</button>
+        <section class="discover-shell" aria-labelledby="recommendationHeading">
+          <div class="recommendation-column">
+            <div class="section-heading compact-heading">
+              <div>
+                <p class="eyebrow">Current decision</p>
+                <h1 id="recommendationHeading">Recommended next</h1>
+              </div>
+              <p id="catalogStatus" class="catalog-status">Loading catalogue…</p>
             </div>
-            <p class="microcopy">Guest and local modes need no email and never write to Supabase.</p>
+
+            <div class="discover-actions">
+              <button class="button button-secondary" type="button" data-tab-link="search">Search the menu</button>
+              <button class="button button-quiet" type="button" data-tab-link="roulette">Use roulette</button>
+              <button id="editScheduleShortcut" class="button button-quiet" type="button">Edit schedule</button>
+            </div>
+
+            <div id="contextChips" class="context-chips" aria-live="polite"></div>
+            <div id="priorityQueue" class="priority-queue" aria-live="polite">
+              <div class="empty-state"><span class="loader" aria-hidden="true"></span><p>Preparing the fictional catalogue…</p></div>
+            </div>
+            <div id="queueToast" class="queue-toast" role="status" hidden></div>
+
+            <details id="tuneDetails" class="settings-drawer">
+              <summary>Tune ranking</summary>
+              <div class="control-grid">
+                <label>Shift length
+                  <select id="shiftLength">
+                    <option value="0">Day off</option>
+                    <option value="4">Short · 4 hours</option>
+                    <option value="6" selected>Standard · 6 hours</option>
+                    <option value="9">Long · 9 hours</option>
+                  </select>
+                </label>
+                <label>Goal
+                  <select id="goal">
+                    <option value="balanced">Balanced</option>
+                    <option value="light">Keep it light</option>
+                    <option value="comfort">Comfort food</option>
+                    <option value="novelty">Try something new</option>
+                  </select>
+                </label>
+                <label>Service moment
+                  <select id="serviceMoment">
+                    <option value="after">After shift</option>
+                    <option value="before">Before shift</option>
+                    <option value="break">On a break</option>
+                  </select>
+                </label>
+                <label>Rank by
+                  <select id="priority">
+                    <option value="balanced">Overall balance</option>
+                    <option value="nutrition">Relative nutrition</option>
+                    <option value="satiety">Satiety</option>
+                    <option value="protein">Protein balance</option>
+                    <option value="vegetables">Vegetable variety</option>
+                    <option value="novelty">Novelty</option>
+                  </select>
+                </label>
+                <label class="check-control"><input id="naturalOnly" type="checkbox" /><span>Whole-food additions only</span></label>
+                <label class="check-control"><input id="avoidSecondFlatbread" type="checkbox" checked /><span>Avoid a second flatbread today</span></label>
+              </div>
+            </details>
           </div>
-          <aside class="hero-card" aria-label="Technical summary">
-            <p class="eyebrow">Public technical demo</p>
-            <strong class="hero-score">296</strong>
-            <p>296 fictional combinations with deterministic ranking, queue diversity, optional RLS-backed sync and a reproducible Excel-to-JSON pipeline.</p>
+
+          <aside id="selectedMealPanel" class="selected-meal-panel" aria-label="Selected meal details">
+            <div class="empty-state"><p>Select a recommendation to inspect the exact build.</p></div>
           </aside>
         </section>
-
-        <section class="workspace recommendation-workspace" aria-labelledby="recommendationHeading">
-          <div class="section-heading compact-heading">
-            <div>
-              <p class="eyebrow">One-glance queue</p>
-              <h2 id="recommendationHeading">Recommended next</h2>
-            </div>
-            <p id="catalogStatus" class="catalog-status">Loading demo catalogue…</p>
+        <section id="modeOnboarding" class="mode-onboarding" aria-labelledby="onboardingTitle">
+          <div>
+            <p class="eyebrow">Start without setup</p>
+            <h1 id="onboardingTitle">Choose how this browser should remember your meals.</h1>
+            <p>Guest and local modes work immediately. Cloud sync remains optional.</p>
           </div>
-
-          <div id="contextChips" class="context-chips" aria-live="polite"></div>
-
-          <div id="priorityQueue" class="priority-queue" aria-live="polite">
-            <div class="empty-state"><span class="loader" aria-hidden="true"></span><p>Preparing the sample catalogue…</p></div>
+          <div class="mode-actions">
+            <button id="tryDemoButton" class="button button-primary" type="button">Try guest demo</button>
+            <button id="localModeButton" class="button button-secondary" type="button">Use local mode</button>
+            <button id="heroSignInButton" class="button button-quiet" type="button">Sign in for sync</button>
           </div>
-          <div id="queueToast" class="queue-toast" role="status" hidden></div>
+        </section>
 
-          <details id="tuneDetails" class="settings-drawer">
-            <summary>Tune recommendation context</summary>
-            <div class="control-grid">
-              <label>Shift length
-                <select id="shiftLength">
-                  <option value="0">Day off</option>
-                  <option value="4">Short · 4 hours</option>
-                  <option value="6" selected>Standard · 6 hours</option>
-                  <option value="9">Long · 9 hours</option>
-                </select>
-              </label>
-              <label>Goal
-                <select id="goal">
-                  <option value="balanced">Balanced</option>
-                  <option value="light">Keep it light</option>
-                  <option value="comfort">Comfort food</option>
-                  <option value="novelty">Try something new</option>
-                </select>
-              </label>
-              <label>Service moment
-                <select id="serviceMoment">
-                  <option value="after">After shift</option>
-                  <option value="before">Before shift</option>
-                  <option value="break">On a break</option>
-                </select>
-              </label>
-              <label class="check-control"><input id="naturalOnly" type="checkbox" /><span>Prefer whole-food additions</span></label>
-            </div>
-          </details>
+      </section>
+
+      <section id="searchPage" class="page" hidden>
+        <section class="product-page-head">
+          <div><p class="eyebrow">Full fictional catalogue</p><h1>Search and compare</h1></div>
+          <p>Find a family first, then inspect only the variations worth comparing.</p>
+        </section>
+        <section class="panel search-panel">
+          <div class="search-controls">
+            <label class="search-wide">Search meals or ingredients
+              <input id="menuSearch" type="search" placeholder="Flatbread, bowl, mushroom, chickpea…" autocomplete="off" />
+            </label>
+            <label>Category
+              <select id="searchCategory">
+                <option value="all">All categories</option>
+                <option value="Flatbread">Flatbreads</option>
+                <option value="Bowl">Bowls</option>
+              </select>
+            </label>
+            <label>Status
+              <select id="searchTriedStatus">
+                <option value="all">New and tried</option>
+                <option value="new">New exact builds</option>
+                <option value="tried">Tried exact builds</option>
+              </select>
+            </label>
+            <label>Sort
+              <select id="searchSort">
+                <option value="fit">Current fit</option>
+                <option value="nutrition">Nutrition</option>
+                <option value="satiety">Satiety</option>
+                <option value="novelty">Novelty</option>
+              </select>
+            </label>
+          </div>
+          <p id="searchSummary" class="search-summary">Loading menu families…</p>
+          <div id="searchResults" class="search-results"></div>
         </section>
       </section>
 
-      <section id="schedulePage" class="page" hidden>
-        <div class="page-intro compact-page-intro">
-          <p class="eyebrow">Context without surveillance</p>
-          <h1>Your week, in times rather than screenshots.</h1>
-          <p>Only the start and finish times you enter are stored. NovelBite never uploads roster images.</p>
-        </div>
-        <section class="panel">
-          <div class="section-heading">
-            <div><p class="eyebrow">Weekly schedule</p><h2>Shift times</h2></div>
-            <span id="scheduleSummary" class="status-pill">No shifts saved</span>
+      <section id="roulettePage" class="page" hidden>
+        <section class="roulette-layout">
+          <div class="roulette-primary">
+            <div class="product-page-head compact-product-head"><div><p class="eyebrow">Weighted quick pick</p><h1>Roulette</h1></div></div>
+            <div id="rouletteResult" class="roulette-result"></div>
+            <div class="roulette-actions">
+              <button id="rouletteButton" class="button button-primary" type="button">Draw a meal</button>
+              <button id="rouletteAgainButton" class="button button-secondary" type="button">Draw again</button>
+            </div>
           </div>
-          <div id="scheduleGrid" class="schedule-grid"></div>
-          <div class="panel-actions">
-            <button id="saveScheduleButton" class="button button-primary" type="button">Save schedule</button>
-            <button id="clearScheduleButton" class="button button-quiet" type="button">Clear</button>
-          </div>
-          <p id="scheduleMessage" class="form-message" role="status"></p>
+          <aside class="panel roulette-settings">
+            <h2>Roulette settings</h2>
+            <label>Category
+              <select id="rouletteCategory"><option value="all">Any category</option><option value="Flatbread">Flatbread</option><option value="Bowl">Bowl</option></select>
+            </label>
+            <label>Bias
+              <select id="roulettePriority"><option value="novelty">New tastes</option><option value="balanced">Balanced fit</option><option value="nutrition">Nutrition</option><option value="satiety">Satiety</option></select>
+            </label>
+            <label class="check-control"><input id="rouletteNaturalOnly" type="checkbox" /><span>Whole-food additions only</span></label>
+            <p id="roulettePoolStatus" class="form-message">Catalogue loading…</p>
+          </aside>
         </section>
       </section>
 
       <section id="ledgerPage" class="page" hidden>
-        <div class="page-intro compact-page-intro">
-          <p class="eyebrow">Personal learning loop</p>
-          <h1>Past meals first.</h1>
-          <p>Review what worked, then open the composer only when you need to log another meal.</p>
-        </div>
+        <section class="product-page-head ledger-head">
+          <div><p class="eyebrow">Personal learning loop</p><h1>Past meals</h1></div>
+          <button id="openLedgerComposer" class="button button-primary" type="button">＋ Log a meal</button>
+        </section>
+
         <section class="panel ledger-history-panel">
-          <div class="section-heading">
-            <div><p class="eyebrow">Recent meals</p><h2>Your ledger</h2></div>
+          <div class="ledger-toolbar">
+            <label>Search past meals
+              <input id="ledgerSearch" type="search" placeholder="Meal, ingredient, comment or next-time note" autocomplete="off" />
+            </label>
             <span id="ledgerCount" class="status-pill">0 entries</span>
           </div>
-          <label class="ledger-search-label">Search past meals
-            <input id="ledgerSearch" type="search" placeholder="Meal, ingredient or comment" autocomplete="off" />
-          </label>
           <div id="ledgerList" class="ledger-list"></div>
         </section>
 
         <details id="ledgerComposer" class="panel ledger-composer">
-          <summary>＋ Log a meal</summary>
+          <summary>Log a meal</summary>
           <form id="ledgerForm">
-            <label>Meal
+            <label>Find a meal
+              <input id="ledgerMealSearch" type="search" placeholder="Type a family or ingredient" autocomplete="off" />
+            </label>
+            <label>Exact build
               <select id="ledgerMeal" required></select>
             </label>
-            <label>Rating
-              <select id="ledgerRating" required>
-                <option value="5">5 · excellent</option>
-                <option value="4" selected>4 · good</option>
-                <option value="3">3 · fine</option>
-                <option value="2">2 · not for me</option>
-                <option value="1">1 · avoid</option>
-              </select>
-            </label>
+            <div class="form-grid-two">
+              <label>Rating
+                <select id="ledgerRating" required>
+                  <option value="5">5 · excellent</option><option value="4" selected>4 · good</option><option value="3">3 · fine</option><option value="2">2 · not for me</option><option value="1">1 · avoid</option>
+                </select>
+              </label>
+              <label>How filling was it?
+                <select id="ledgerFullness"><option value="too light">Too light</option><option value="just right" selected>Just right</option><option value="too heavy">Too heavy</option></select>
+              </label>
+            </div>
+            <label class="check-control"><input id="ledgerWouldRepeat" type="checkbox" checked /><span>I would order this exact build again</span></label>
             <label>Comment
-              <textarea id="ledgerComment" maxlength="500" rows="3" placeholder="What worked, and what should change next time?"></textarea>
+              <textarea id="ledgerComment" maxlength="500" rows="3" placeholder="What worked or felt wrong?"></textarea>
+            </label>
+            <label>Next time
+              <textarea id="ledgerNextTime" maxlength="300" rows="2" placeholder="Change one addition, choose a lighter route, keep it exactly as it is…"></textarea>
             </label>
             <button class="button button-primary button-full" type="submit">Save entry</button>
             <p id="ledgerMessage" class="form-message" role="status"></p>
@@ -162,57 +228,53 @@
         </details>
       </section>
 
-      <section id="privacyPage" class="page" hidden>
-        <div class="page-intro compact-page-intro">
-          <p class="eyebrow">Privacy and project controls</p>
-          <h1>You should know where every byte goes.</h1>
-          <p>Guest and local modes stay in this browser. Signed-in mode syncs only the schedule, preferences and ledger fields documented in the repository.</p>
-        </div>
-        <div class="privacy-grid">
-          <article class="privacy-card"><span>01</span><h2>Guest demo</h2><p>Sample history and changes stay in local storage.</p></article>
-          <article class="privacy-card"><span>02</span><h2>Local mode</h2><p>No account and no server-side identity.</p></article>
-          <article class="privacy-card"><span>03</span><h2>Signed in</h2><p>Supabase rows are isolated by Row Level Security.</p></article>
-          <article class="privacy-card"><span>04</span><h2>Hosting</h2><p>Cloudflare serves static files; private source data is excluded.</p></article>
-        </div>
-        <section class="panel data-controls">
-          <div><p class="eyebrow">Your controls</p><h2>Export it, erase it, or leave.</h2><p>Local data remains until browser storage is cleared. Cloud data remains until you delete the rows or account.</p></div>
-          <div class="data-actions">
-            <button id="exportButton" class="button button-secondary" type="button">Export my data</button>
-            <button id="deleteDataButton" class="button button-danger" type="button">Delete ledger data</button>
-            <button id="deleteAccountButton" class="button button-danger-outline" type="button">Delete my account</button>
-          </div>
-          <p id="privacyMessage" class="form-message" role="status"></p>
+      <section id="morePage" class="page" hidden>
+        <section class="more-grid">
+          <section class="panel schedule-panel">
+            <div class="section-heading"><div><p class="eyebrow">Planning context</p><h2>Weekly schedule</h2></div><span id="scheduleSummary" class="status-pill">No shifts saved</span></div>
+            <div id="scheduleGrid" class="schedule-grid"></div>
+            <div class="panel-actions"><button id="saveScheduleButton" class="button button-primary" type="button">Save schedule</button><button id="clearScheduleButton" class="button button-quiet" type="button">Clear</button></div>
+            <p id="scheduleMessage" class="form-message" role="status"></p>
+          </section>
+
+          <section class="panel analytics-panel">
+            <div class="section-heading"><div><p class="eyebrow">Useful feedback, not confetti</p><h2>Taste profile</h2></div></div>
+            <div id="analyticsGrid" class="analytics-grid"></div>
+            <p class="metric-caveat">Nutrition and satiety values are comparative heuristics derived from the fictional catalogue, not calorie or medical guidance.</p>
+          </section>
+
+          <section class="panel data-controls">
+            <div><p class="eyebrow">Privacy controls</p><h2>Your data</h2><p>Guest and local modes remain in this browser. Signed-in mode syncs only documented personal rows protected by RLS.</p></div>
+            <div class="data-actions"><button id="exportButton" class="button button-secondary" type="button">Export my data</button><button id="deleteDataButton" class="button button-danger" type="button">Delete ledger data</button><button id="deleteAccountButton" class="button button-danger-outline" type="button">Delete my account</button></div>
+            <p id="privacyMessage" class="form-message" role="status"></p>
+          </section>
+
+          <details class="panel case-study-panel">
+            <summary>About this MSc portfolio project</summary>
+            <div class="case-study-content">
+              <p class="eyebrow">Public technical case study · v1.1.0</p>
+              <h2>Novel meals without repeating yesterday</h2>
+              <p>NovelBite is a public-safe reconstruction of a more detailed private workflow. It keeps the recommendation, data-pipeline and privacy ideas while replacing restaurant identity, private history and branded assets with fictional data.</p>
+              <div class="case-study-stats"><article><strong>296</strong><span>fictional combinations</span></article><article><strong>Deterministic</strong><span>stable signatures and ranking</span></article><article><strong>Optional</strong><span>local or Supabase storage</span></article></div>
+              <p>The ranking model is heuristic rather than machine-learning based because the personal feedback dataset is deliberately small. Transparency and testability are more useful here than pretending limited data has become prophecy.</p>
+            </div>
+          </details>
         </section>
-        <section class="notice"><h2>Independent case study</h2><p>NovelBite uses a fictional public dataset and is not affiliated with any restaurant or entertainment brand.</p></section>
       </section>
     </main>
 
-    <footer>
-      <p>Independent portfolio case study · App 1.0.0 · Catalogue schema 1 · Engine 1.0.0</p>
-      <a href="#privacy" data-tab-link="privacy">Privacy and data controls</a>
-    </footer>
+    <footer><p>Independent MSc portfolio case study · App 1.1.0 · Catalogue schema 1 · Engine 1.1.0</p><button class="footer-link" type="button" data-tab-link="more">Privacy, architecture and project context</button></footer>
 
     <dialog id="mealDialog" class="meal-dialog">
       <button id="closeMealButton" class="dialog-close" type="button" aria-label="Close meal details">×</button>
-      <p id="mealDialogCategory" class="eyebrow"></p>
-      <h2 id="mealDialogName"></h2>
-      <p id="mealDialogAdditions" class="dialog-copy"></p>
-      <div id="mealDialogMeta" class="meal-meta dialog-meta"></div>
-      <ol id="reasonList" class="dialog-reasons"></ol>
-      <button id="chooseMealButton" class="button button-primary button-full" type="button">Log this meal</button>
+      <p id="mealDialogCategory" class="eyebrow"></p><h2 id="mealDialogName"></h2><p id="mealDialogAdditions" class="dialog-copy"></p><div id="mealDialogMeta" class="meal-meta dialog-meta"></div><ol id="reasonList" class="dialog-reasons"></ol><button id="chooseMealButton" class="button button-primary button-full" type="button">Choose and log</button>
     </dialog>
 
     <dialog id="authDialog" class="auth-dialog">
       <button id="closeAuthButton" class="dialog-close" type="button" aria-label="Close sign-in">×</button>
-      <p class="eyebrow">Optional cloud sync</p>
-      <h2>Sign in by email</h2>
-      <p>A separate public-demo Supabase project is required. Guest and local modes work without it.</p>
-      <form id="authForm">
-        <label>Email<input id="authEmail" type="email" autocomplete="email" required /></label>
-        <button class="button button-primary button-full" type="submit">Send magic link</button>
-      </form>
-      <button id="signOutButton" class="button button-quiet button-full" type="button" hidden>Sign out</button>
-      <p id="authMessage" class="form-message" role="status"></p>
+      <p class="eyebrow">Optional cloud sync</p><h2>Sign in by email</h2><p>A separate public-demo Supabase project is required. Guest and local modes work without it.</p>
+      <form id="authForm"><label>Email<input id="authEmail" type="email" autocomplete="email" required /></label><button class="button button-primary button-full" type="submit">Send magic link</button></form>
+      <button id="signOutButton" class="button button-quiet button-full" type="button" hidden>Sign out</button><p id="authMessage" class="form-message" role="status"></p>
     </dialog>
 
     <script src="/config.js"></script>

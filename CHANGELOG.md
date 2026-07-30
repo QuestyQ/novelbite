@@ -1,25 +1,19 @@
 # Changelog
 
-All notable changes to NovelBite are documented here.
+## 1.1.0
 
-## 1.0.0 - 2026-07-30
+- Replaced the portfolio-first landing hero with a product-first Discover workspace.
+- Added grouped catalogue search across meal names, categories, styles and ingredients.
+- Added relative nutrition, satiety, protein and vegetable-balance metrics.
+- Added ranking priorities for overall balance, nutrition, satiety, protein, vegetables and novelty.
+- Added weighted meal roulette with recent-draw avoidance.
+- Added an optional daily flatbread guard and a late-service bowl preference.
+- Expanded ledger feedback with fullness, repeat intent and next-time notes.
+- Added compact taste-profile analytics.
+- Moved the MSc case-study explanation into More so it supports the app rather than blocking it.
+- Added a committed Cloudflare Workers static-assets configuration and removed the conflicting `_redirects` file.
+- Updated the service-worker cache to 1.1.0.
 
-### Added
+## 1.0.0
 
-- Independent NovelBite identity and original plate/compass mark.
-- Fictional 296-combination Excel-to-JSON data pipeline.
-- Deterministic novelty, exposure, feedback and shift-aware ranking engine.
-- Five-item one-glance queue with exact-build rejection, replacement and Undo.
-- Weekly schedule context with 24-hour and overnight-shift handling.
-- Past-meals-first ledger with a collapsed meal composer and searchable comments.
-- Guest, local-only and optional Supabase cloud modes.
-- Data export, ledger deletion and account deletion.
-- Supabase schema, indexes, complete RLS policies and self-delete RPC.
-- Responsive bottom navigation and modal close/escape handling.
-- Mobile dialogs stop above the fixed navigation, close from visible controls, Escape, backdrop taps and tab changes.
-- PWA icons, service-worker caching and Cloudflare Pages headers.
-- Generated public configuration for local and hosted builds.
-- CI, dependency updates, coverage, ranking benchmark and release audit.
-- Architecture, privacy, scoring, ADR and first-release documentation.
-
-This is the first public semantic release. It does not reuse private application version numbers or private source material.
+- Initial public NovelBite release with 296 fictional combinations, deterministic ranking, local and optional Supabase storage, weekly shifts, a personal ledger, CI, coverage and release auditing.
