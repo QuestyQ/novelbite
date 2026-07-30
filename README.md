@@ -14,7 +14,7 @@ The project explores how a relatively small, structured dataset can support usef
 
 It is a public reconstruction of a larger private workflow. Restaurant identity, character-inspired assets, private configuration, personal meal history and the private 5,275-combination dataset are deliberately excluded.
 
-> NovelBite is an independent technical case study built with fictional data. It is not affiliated with or endorsed by any restaurant or entertainment brand.
+> NovelBite is an independent technical case study built with fictional data.
 
 ## Project context
 
