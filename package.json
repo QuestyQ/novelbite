@@ -24,7 +24,7 @@
     "vendor:copy": "node scripts/copy-vendor.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "2.110.8"
+    "@supabase/supabase-js": "2.110.9"
   },
   "devDependencies": {
     "read-excel-file": "9.3.4",
