@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "description": "Fictional portfolio-safe menu inputs for NovelBite.",
+  "dishes": [
+    {
+      "id": "FLAT-CLASSIC",
+      "name": "Cedar Flatbread",
+      "category": "Flatbread",
+      "style": "Classic",
+      "repetitionFamily": "flatbread",
+      "additionGroup": "flatbread",
+      "minAdditions": 1,
+      "maxAdditions": 3,
+      "baseScore": 7.2,
+      "baseHeaviness": 5.8
+    },
+    {
+      "id": "FLAT-THIN",
+      "name": "Ember Flatbread",
+      "category": "Flatbread",
+      "style": "Thin",
+      "repetitionFamily": "flatbread",
+      "additionGroup": "flatbread",
+      "minAdditions": 1,
+      "maxAdditions": 3,
+      "baseScore": 7.35,
+      "baseHeaviness": 5.2
+    },
+    {
+      "id": "BOWL-MEADOW",
+      "name": "Meadow Bowl",
+      "category": "Bowl",
+      "style": "Garden",
+      "repetitionFamily": "garden-bowl",
+      "additionGroup": "meadow",
+      "minAdditions": 2,
+      "maxAdditions": 3,
+      "baseScore": 7.45,
+      "baseHeaviness": 3.5
+    },
+    {
+      "id": "BOWL-HARVEST",
+      "name": "Harvest Grain Bowl",
+      "category": "Bowl",
+      "style": "Grain",
+      "repetitionFamily": "grain-bowl",
+      "additionGroup": "harvest",
+      "minAdditions": 2,
+      "maxAdditions": 3,
+      "baseScore": 7.4,
+      "baseHeaviness": 4.4
+    }
+  ],
+  "additions": [
+    {
+      "id": "F01",
+      "name": "Roasted peppers",
+      "group": "flatbread",
+      "novelty": 6.5,
+      "heaviness": 1,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "F02",
+      "name": "Wild mushrooms",
+      "group": "flatbread",
+      "novelty": 7.2,
+      "heaviness": 1.2,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "F03",
+      "name": "Pesto chicken",
+      "group": "flatbread",
+      "novelty": 6.8,
+      "heaviness": 2.4,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "F04",
+      "name": "Soft egg",
+      "group": "flatbread",
+      "novelty": 7.6,
+      "heaviness": 1.8,
+      "natural": true,
+      "containsEgg": true
+    },
+    {
+      "id": "F05",
+      "name": "Charred courgette",
+      "group": "flatbread",
+      "novelty": 7.5,
+      "heaviness": 0.8,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "F06",
+      "name": "Smoked cheese",
+      "group": "flatbread",
+      "novelty": 6.4,
+      "heaviness": 2.5,
+      "natural": false,
+      "containsEgg": false
+    },
+    {
+      "id": "F07",
+      "name": "Herb lentils",
+      "group": "flatbread",
+      "novelty": 8.1,
+      "heaviness": 1.5,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "F08",
+      "name": "Crisp onions",
+      "group": "flatbread",
+      "novelty": 6.9,
+      "heaviness": 1.4,
+      "natural": false,
+      "containsEgg": false
+    },
+    {
+      "id": "M01",
+      "name": "Cucumber ribbons",
+      "group": "meadow",
+      "novelty": 6.4,
+      "heaviness": 0.3,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "M02",
+      "name": "Roasted beetroot",
+      "group": "meadow",
+      "novelty": 7.4,
+      "heaviness": 0.6,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "M03",
+      "name": "Citrus chickpeas",
+      "group": "meadow",
+      "novelty": 8,
+      "heaviness": 1.2,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "M04",
+      "name": "Jammy egg",
+      "group": "meadow",
+      "novelty": 7.2,
+      "heaviness": 1.4,
+      "natural": true,
+      "containsEgg": true
+    },
+    {
+      "id": "M05",
+      "name": "Toasted seeds",
+      "group": "meadow",
+      "novelty": 7,
+      "heaviness": 0.8,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "M06",
+      "name": "Pickled radish",
+      "group": "meadow",
+      "novelty": 8.2,
+      "heaviness": 0.2,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "M07",
+      "name": "Herb dressing",
+      "group": "meadow",
+      "novelty": 6.7,
+      "heaviness": 0.7,
+      "natural": false,
+      "containsEgg": false
+    },
+    {
+      "id": "H01",
+      "name": "Pearled barley",
+      "group": "harvest",
+      "novelty": 7.4,
+      "heaviness": 1.3,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "H02",
+      "name": "Roasted squash",
+      "group": "harvest",
+      "novelty": 7.2,
+      "heaviness": 0.8,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "H03",
+      "name": "Pesto chicken",
+      "group": "harvest",
+      "novelty": 6.8,
+      "heaviness": 2.4,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "H04",
+      "name": "Crisp kale",
+      "group": "harvest",
+      "novelty": 7.8,
+      "heaviness": 0.4,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "H05",
+      "name": "Green tahini",
+      "group": "harvest",
+      "novelty": 8.1,
+      "heaviness": 1.1,
+      "natural": true,
+      "containsEgg": false
+    },
+    {
+      "id": "H06",
+      "name": "Soft egg",
+      "group": "harvest",
+      "novelty": 7.6,
+      "heaviness": 1.8,
+      "natural": true,
+      "containsEgg": true
+    },
+    {
+      "id": "H07",
+      "name": "Cranberry relish",
+      "group": "harvest",
+      "novelty": 8.4,
+      "heaviness": 0.7,
+      "natural": false,
+      "containsEgg": false
+    }
+  ]
+}

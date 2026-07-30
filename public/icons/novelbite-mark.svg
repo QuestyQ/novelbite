@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">NovelBite plate and compass mark</title>
+  <rect width="128" height="128" rx="30" fill="#12324a"/>
+  <circle cx="64" cy="64" r="39" fill="#f7c948"/>
+  <circle cx="64" cy="64" r="28" fill="#fffaf0"/>
+  <path d="M76 40 68 61 48 72l21-7 19-14-12-11Z" fill="#e85d3f"/>
+  <circle cx="64" cy="64" r="5" fill="#12324a"/>
+  <path d="M31 93c18 8 48 8 66 0" fill="none" stroke="#5c8ca7" stroke-width="5" stroke-linecap="round"/>
+</svg>
+

@@ -1,0 +1,11 @@
+{
+  "appVersion": "1.0.0",
+  "schemaVersion": 1,
+  "recommendationEngineVersion": "1.0.0",
+  "count": 296,
+  "sourceWorkbook": "data/sample/novelbite-demo.xlsx",
+  "sourceWorkbookSha256": "dd22e4fc3b853efa632e96e2140642f97876325b5a014cbad91d910fdab10556",
+  "generatedBy": "scripts/excel-to-json.mjs",
+  "generatedAt": "deterministic-build",
+  "disclaimer": "Fictional portfolio-safe data; no production menu or personal data."
+}

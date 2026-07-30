@@ -1,0 +1,38 @@
+{
+  "name": "novelbite",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A privacy-first, context-aware meal recommendation PWA and reproducible data pipeline.",
+  "type": "module",
+  "scripts": {
+    "config:write": "node scripts/write-public-config.mjs",
+    "predev": "npm run config:write && npm run vendor:copy",
+    "dev": "vite",
+    "prebuild": "npm run config:write && npm run vendor:copy",
+    "build": "node scripts/build.mjs",
+    "preview": "vite preview",
+    "check": "node --check src/app/main.js && node --check src/recommendations/engine.js && node --check src/ledger/store.js && node --check src/schedule/shifts.js && node --check src/storage/local.js && node --check src/storage/cloud.js && node --check src/ui/render.js",
+    "data:workbook": "node scripts/generate-demo-data.mjs",
+    "data:build": "node scripts/excel-to-json.mjs",
+    "data:validate": "node scripts/validate-catalog.mjs",
+    "data:refresh": "npm run data:workbook && npm run data:build && npm run data:validate",
+    "test": "node --test",
+    "test:coverage": "node --experimental-test-coverage --test",
+    "benchmark": "node scripts/benchmark-ranking.mjs",
+    "verify": "npm run check && npm run data:validate && npm run test:coverage && npm run benchmark && npm run build",
+    "release:check": "npm run verify && node scripts/release-audit.mjs",
+    "vendor:copy": "node scripts/copy-vendor.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.110.8"
+  },
+  "devDependencies": {
+    "read-excel-file": "9.3.4",
+    "vite": "7.3.6",
+    "write-excel-file": "4.1.1"
+  },
+  "engines": {
+    "node": "22.16.0"
+  },
+  "license": "MIT"
+}

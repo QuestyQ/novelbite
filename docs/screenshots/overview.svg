@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">NovelBite application overview</title>
+  <desc id="desc">A stylised screenshot of the NovelBite recommendation screen.</desc>
+  <rect width="1440" height="900" rx="28" fill="#f6f1e8"/>
+  <circle cx="86" cy="72" r="28" fill="#12324a"/>
+  <circle cx="86" cy="72" r="17" fill="#f7c948"/>
+  <circle cx="86" cy="72" r="10" fill="#fffaf1"/>
+  <path d="m92 58-5 13-12 7 13-4 11-9-7-7Z" fill="#e85d3f"/>
+  <text x="128" y="68" fill="#12324a" font-family="Georgia,serif" font-size="28" font-weight="700">NovelBite</text>
+  <text x="128" y="88" fill="#486274" font-family="Arial,sans-serif" font-size="12">make the next meal count</text>
+  <g transform="translate(545 49)">
+    <rect width="350" height="48" rx="24" fill="#fffaf1" stroke="#d4d5ce"/>
+    <rect x="5" y="5" width="90" height="38" rx="19" fill="#12324a"/>
+    <text x="50" y="30" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="13" font-weight="700">Discover</text>
+    <text x="135" y="30" text-anchor="middle" fill="#12324a" font-family="Arial,sans-serif" font-size="13">Schedule</text>
+    <text x="221" y="30" text-anchor="middle" fill="#12324a" font-family="Arial,sans-serif" font-size="13">Ledger</text>
+    <text x="306" y="30" text-anchor="middle" fill="#12324a" font-family="Arial,sans-serif" font-size="13">Privacy</text>
+  </g>
+  <text x="86" y="175" fill="#e85d3f" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="2">PORTFOLIO CASE STUDY · V1.0.0</text>
+  <text x="86" y="248" fill="#12324a" font-family="Georgia,serif" font-size="72" font-weight="700">A useful answer to</text>
+  <text x="86" y="320" fill="#e85d3f" font-family="Georgia,serif" font-size="72" font-style="italic" font-weight="700">what should I eat?</text>
+  <text x="89" y="365" fill="#486274" font-family="Arial,sans-serif" font-size="20">Context, novelty, ingredient exposure and feedback—</text>
+  <text x="89" y="394" fill="#486274" font-family="Arial,sans-serif" font-size="20">without requiring an account.</text>
+  <rect x="89" y="431" width="148" height="50" rx="25" fill="#12324a"/>
+  <text x="163" y="462" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">Try the demo</text>
+  <rect x="250" y="431" width="148" height="50" rx="25" fill="#f7c948" stroke="#12324a"/>
+  <text x="324" y="462" text-anchor="middle" fill="#12324a" font-family="Arial,sans-serif" font-size="15" font-weight="700">Run locally</text>
+  <g transform="translate(1010 165)">
+    <rect width="300" height="350" rx="145 145 32 32" fill="#f7c948"/>
+    <circle cx="150" cy="102" r="62" fill="none" stroke="#12324a" stroke-width="2" opacity=".3"/>
+    <circle cx="150" cy="102" r="35" fill="#fffaf1" stroke="#fffaf1" stroke-width="18"/>
+    <circle cx="150" cy="102" r="8" fill="#e85d3f"/>
+    <text x="36" y="210" fill="#e85d3f" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">RANKING SIGNAL</text>
+    <text x="36" y="270" fill="#12324a" font-family="Georgia,serif" font-size="62" font-weight="700">8.74</text>
+    <rect x="38" y="298" width="220" height="7" rx="4" fill="#12324a"/>
+    <rect x="38" y="316" width="175" height="7" rx="4" fill="#12324a"/>
+  </g>
+  <rect x="70" y="565" width="1300" height="280" rx="32" fill="#fffaf1"/>
+  <text x="106" y="617" fill="#e85d3f" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">TODAY'S RECOMMENDATION</text>
+  <rect x="103" y="645" width="845" height="155" rx="22" fill="#12324a"/>
+  <text x="135" y="683" fill="#f7c948" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">BOWL · GRAIN</text>
+  <text x="135" y="732" fill="#fff" font-family="Georgia,serif" font-size="43" font-weight="700">Harvest Grain Bowl</text>
+  <text x="135" y="768" fill="#dfeef3" font-family="Arial,sans-serif" font-size="16">Crisp kale · Green tahini · Roasted squash</text>
+  <circle cx="890" cy="691" r="34" fill="#f7c948"/>
+  <text x="890" y="698" text-anchor="middle" fill="#12324a" font-family="Georgia,serif" font-size="21" font-weight="700">9.1</text>
+  <rect x="970" y="645" width="360" height="155" rx="22" fill="#ffedaa"/>
+  <text x="997" y="681" fill="#e85d3f" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">WHY THIS RESULT?</text>
+  <text x="1000" y="718" fill="#12324a" font-family="Arial,sans-serif" font-size="15">1. An unseen combination</text>
+  <text x="1000" y="747" fill="#12324a" font-family="Arial,sans-serif" font-size="15">2. Low ingredient exposure</text>
+  <text x="1000" y="776" fill="#12324a" font-family="Arial,sans-serif" font-size="15">3. Good weight for this shift</text>
+</svg>

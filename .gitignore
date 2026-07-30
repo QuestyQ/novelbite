@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.vite/
+coverage/
+
+# Local and hosted configuration
+config.js
+public/config.js
+public/vendor/
+.env
+.env.*
+!.env.example
+
+# Private source material and exports
+*.zip
+roster-images/
+personal-data/
+data/private/
+data/exports/
+
+# Logs and editor files
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
