@@ -43,7 +43,7 @@ I started from a practical question: how can a repeated meal-choice process beco
 
 The private version grew through repeated use and many small corrections to ranking, search, logging and mobile interaction. NovelBite keeps those general product ideas while replacing private data and branding with a reproducible fictional catalogue.
 
-This is a student-built project rather than a production service maintained by a specialised team. The documentation therefore separates implemented behaviour from assumptions and limitations rather than pretending a personal dataset has achieved universal predictive wisdom.
+The documentation therefore separates implemented behaviour from assumptions and limitations rather than pretending a personal dataset has achieved universal predictive wisdom.
 
 ## Architecture
 
